@@ -130,7 +130,7 @@ class GUI(object):
         self.user = get_user(username)
         if self.user is None:
             tk.Label(self.frame, width=50, text="User not found.", fg='red', pady=60).grid(row=4,columnspan=2)
-        elif self.user['password'] == password:
+        elif self.user[1] == password:
             self._create_welcome_screen()
         else:
             tk.Label(self.frame, width=50, text="Incorrect password.", fg='red', pady=60).grid(row=4,columnspan=2)
@@ -157,14 +157,15 @@ class GUI(object):
     def _create_session(self):
 
         #Starts session
-        touches = hands_off()
+        currentRate = hands_off()
         self.frame.destroy()
         self.window.resizable(1,1)
         self.window.minsize(600,450)
         self.frame = tk.Frame()
+        currentAverage = get_average(currentRate)
         title = tk.Label(self.frame, pady=20, width=50, text="Session Complete!")
-        register = tk.Label(self.frame, pady=30, width=50, text="You touched your eyes at a rate of "+str(round(touches,2))+" Times per minute!")
-        average = tk.Label(self.frame, pady=30, width=50, text='The global average is '+ str(round(get_average(),2)) +' Times per minute')
+        register = tk.Label(self.frame, pady=30, width=50, text="You touched your eyes at a rate of "+str(round(currentRate,2))+" Times per minute!")
+        average = tk.Label(self.frame, pady=30, width=50, text='The global average is '+ str(round(currentAverage,2)) +' Times per minute')
         done = tk.Button(self.frame, pady=30, text='Done', width=50, command=lambda: self._create_welcome_screen())
         title.grid(row=0)
         register.grid(row=1)     
