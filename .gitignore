@@ -1,3 +1,5 @@
 __pycache__/
 /code/__pycache__
 *.json
+*.jpg
+*.png
