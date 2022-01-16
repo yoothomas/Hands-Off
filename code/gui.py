@@ -1,9 +1,14 @@
 import tkinter as tk
+from tkinter import *
 import sys
 import glob
-import tkinter.ttk as ttks
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
 from database import *
 from hands_off import hands_off
+from PIL import ImageTk, Image
+
+THEME = 'morph'
 
 class GUI(object):
     
@@ -14,7 +19,9 @@ class GUI(object):
         self.frame = tk.Frame()
         self.window.title("Deltahacks")
         self.popup = ""
-        self.state = "Init"        
+        self.state = "Init"
+        self.window.style = ttk.Style()
+        self.window.style.theme_use(THEME)       
         self._create_welcome_screen()
 
         self.update()
@@ -58,7 +65,7 @@ class GUI(object):
         register.grid(row=1)
         login.grid(row=2)
         start.grid(row=4)
-        close.grid(row=6)        
+        close.grid(row=6)
         self.frame.pack()
 
         self.state = 'Welcome'
@@ -155,12 +162,12 @@ class GUI(object):
         self.window.resizable(1,1)
         self.window.minsize(600,450)
         self.frame = tk.Frame()
-        title = tk.Label(self.frame, width=50, text="Session Complete!")
-        register = tk.Label(self.frame, width=50, text="You touched your eyes "+str(round(touches,2))+" Times!")
-        average = tk.Label(self.frame, width=50, text='The global average is '+ str(round(get_average(),2)) +' Times')
-        done = tk.Button(self.frame, text='Done', width=50, pady=10, command=lambda: self._create_welcome_screen())
+        title = tk.Label(self.frame, pady=20, width=50, text="Session Complete!")
+        register = tk.Label(self.frame, pady=30, width=50, text="You touched your eyes at a rate of "+str(round(touches,2))+" Times per minute!")
+        average = tk.Label(self.frame, pady=30, width=50, text='The global average is '+ str(round(get_average(),2)) +' Times per minute')
+        done = tk.Button(self.frame, pady=30, text='Done', width=50, command=lambda: self._create_welcome_screen())
         title.grid(row=0)
         register.grid(row=1)     
         average.grid(row=2)
-        done.grid(row=3)  
+        done.grid(row=4)  
         self.frame.pack()

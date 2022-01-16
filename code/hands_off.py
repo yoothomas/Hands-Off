@@ -24,7 +24,6 @@ def hands_off():
     while True:
         if eye_rubs == 3:
             end = time.time()
-            cv2.imwrite("code\eye_rubs\frame%d.jpg" % eye_rubs, frame)
             video.release()
             cv2.destroyAllWindows()
             return eye_rubs/(end-start) * 60
@@ -60,7 +59,7 @@ def hands_off():
 
         if (count(queue)):
             print("EYE RUB")
-            cv2.imwrite("code\eye_rubs\frame%d.jpg" % eye_rubs, frame)
+            cv2.imwrite("code\eye_rubs\\frame%d.jpg" % eye_rubs, frame) 
             eye_rubs += 1
             time.sleep(2)
             queue = [0,0,0,0,0]
