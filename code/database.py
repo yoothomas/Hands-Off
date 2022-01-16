@@ -3,6 +3,9 @@ from tinydb import TinyDB, Query
 db = TinyDB('db.json')
 UserQuery = Query()
 
+def get_average():
+    return 5
+
 def create_user(username: str, password: str):
     if get_user(username) is None:
         db.insert({'username': username, 'password': password, 'sessions': []})

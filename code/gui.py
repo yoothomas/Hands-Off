@@ -26,7 +26,7 @@ class GUI(object):
     #Quit
     def quit_win(self):
         # console message
-        print("Quitting DCM")
+        print("Quitting")
 
         # Quit
         self.window.quit()
@@ -44,7 +44,6 @@ class GUI(object):
         self.window.update()
 
     def _create_welcome_screen(self):
-
         self.frame.destroy()
 
         self.window.resizable(1,1)
@@ -152,14 +151,13 @@ class GUI(object):
 
         #Starts session
         touches = hands_off()
-
         self.frame.destroy()
         self.window.resizable(1,1)
         self.window.minsize(600,450)
         self.frame = tk.Frame()
-        title = tk.Label(self.frame, width=50, text="Session complete!")
-        register = tk.Label(self.frame, width=50, text="You touched your eyes "+touches+" Times!")
-        average = tk.Label(self.frame, width=50, text='The global average is'+ get_average() +'Times')
+        title = tk.Label(self.frame, width=50, text="Session Complete!")
+        register = tk.Label(self.frame, width=50, text="You touched your eyes "+str(round(touches,2))+" Times!")
+        average = tk.Label(self.frame, width=50, text='The global average is '+ str(round(get_average(),2)) +' Times')
         done = tk.Button(self.frame, text='Done', width=50, pady=10, command=lambda: self._create_welcome_screen())
         title.grid(row=0)
         register.grid(row=1)     

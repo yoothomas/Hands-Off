@@ -1,4 +1,4 @@
-#import cv2
+import cv2
 import time
 
 def count(x):
@@ -11,8 +11,8 @@ def count(x):
 
 
 def hands_off():
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-    eye_cascade = cv2.CascadeClassifier('hand.xml')
+    face_cascade = cv2.CascadeClassifier('code\\algorithm\haarcascade_frontalface_default.xml')
+    eye_cascade = cv2.CascadeClassifier('code\\algorithm\hand.xml')
 
     video = cv2.VideoCapture(0)
 
@@ -22,6 +22,13 @@ def hands_off():
 
     start = time.time()
     while True:
+        if eye_rubs == 3:
+            end = time.time()
+            cv2.imwrite("code\eye_rubs\frame%d.jpg" % eye_rubs, frame)
+            video.release()
+            cv2.destroyAllWindows()
+            return eye_rubs/(end-start) * 60
+
         check, frame = video.read()
         faces = face_cascade.detectMultiScale(frame,
                                             scaleFactor=1.1, minNeighbors=5)
@@ -41,8 +48,8 @@ def hands_off():
         valid_eyes = 0
 
         for x,y,w,h in eyes:
-            frame = cv2.rectangle(frame, (x,y), (x+w,y+h), (0,255,0), 3)
             if len(face_address) > 0 and x >= face_address['x'] - w and x <= face_address['x2'] and y >= face_address['y'] - h and y <= face_address['y2']:
+                frame = cv2.rectangle(frame, (x,y), (x+w,y+h), (0,255,0), 3)
                 valid_eyes += 1
 
         #Comment this line out for demo purposes
@@ -53,7 +60,7 @@ def hands_off():
 
         if (count(queue)):
             print("EYE RUB")
-            cv2.imwrite("eye_rubs/frame%d.jpg" % eye_rubs, frame)
+            cv2.imwrite("code\eye_rubs\frame%d.jpg" % eye_rubs, frame)
             eye_rubs += 1
             time.sleep(2)
             queue = [0,0,0,0,0]
