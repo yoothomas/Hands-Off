@@ -150,12 +150,19 @@ class GUI(object):
     
     def _create_session(self):
 
-        # Delete previous frame
+        #Starts session
+        touches = hands_off()
+
         self.frame.destroy()
-
-        hands_off()
-
+        self.window.resizable(1,1)
+        self.window.minsize(600,450)
+        self.frame = tk.Frame()
+        title = tk.Label(self.frame, width=50, text="Session complete!")
+        register = tk.Label(self.frame, width=50, text="You touched your eyes "+touches+" Times!")
+        average = tk.Label(self.frame, width=50, text='The global average is'+ get_average() +'Times')
+        done = tk.Button(self.frame, text='Done', width=50, pady=10, command=lambda: self._create_welcome_screen())
+        title.grid(row=0)
+        register.grid(row=1)     
+        average.grid(row=2)
+        done.grid(row=3)  
         self.frame.pack()
-
-        self.state = 'Session'
-
