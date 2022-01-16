@@ -3,6 +3,7 @@ import sys
 import glob
 import tkinter.ttk as ttks
 from database import *
+from hands_off import hands_off
 
 class GUI(object):
     
@@ -152,11 +153,8 @@ class GUI(object):
         # Delete previous frame
         self.frame.destroy()
 
-        self.window.resizable(1, 1) 
-        self.window.minsize(500, 300)
+        hands_off()
 
-        # Create a frame and pack with interface
-        self.frame = tk.Frame(self.window)
         self.frame.pack()
 
         self.state = 'Session'
