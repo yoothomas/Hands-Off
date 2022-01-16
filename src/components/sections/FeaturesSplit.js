@@ -99,7 +99,7 @@ const FeaturesSplit = ({
                   Comprehensive protection
                   </h3>
                 <p className="m-0">
-                  By means of a tilt switch, the onboard microcontroller can detect when a user's hand is in an upright position, which typically only occurs when the hand is reaching up to touch the face. A device for each hand is not necessary because of the predilection for most to use their dominant hand when touching their face. Ambidextrous folks will have to wear two devices. The device alerts the wearer via the buzzing of a vibratory motor and the flashing of an LED.
+                  By means of a tilt switch, the onboard microcontroller can detect when a user's hand is in an upright position, which typically only occurs when the hand is reaching up to touch the face. A device for each hand is not necessary because of the predilection for most to use their dominant hand when touching their face. Ambidextrous folks will have to wear two devices. The device alerts the wearer via the buzzing of a vibratory motor/buzzer and the flashing of an LED.
                   </p>
               </div>
               <div className={
